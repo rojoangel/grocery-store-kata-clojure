@@ -24,9 +24,7 @@
   (into {} (for [category categories] (vector (second category) 0))))
 
 (defn- record->category [record]
-  ; (get categories (first record))
-  (drop-while #(contains?) categories)
-  )
+  (get categories (some #(re-find (re-pattern (key %)) (first record)) categories)))
 
 (defn- category-and-total [record]
   (vector (record->category record) (last record)))
