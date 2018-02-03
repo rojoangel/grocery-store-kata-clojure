@@ -1,22 +1,22 @@
 (ns grocery-store.core)
 
 (def categories {
-   "bread" "wheat and pasta"
-   "eggs" "animalic"
-   "milk" "dairy"
-   "coca cola" "sodas"
-   "chicken" "meat"
-   "beef" "meat"
-   "carrots" "greens"
-   "apples" "fruit"
-   "butter" "dairy"
-   "cheese" "dairy"
-   "bacon" "meat"
-   "juice" "drinks"
-   "water" "drinks"
-   "twixies" "candy"
-   "tomatoes" "greens"
-   "bananas" "fruit"})
+                 "bread"     "wheat and pasta"
+                 "eggs"      "animalic"
+                 "milk"      "dairy"
+                 "coca cola" "sodas"
+                 "chicken"   "meat"
+                 "beef"      "meat"
+                 "carrots"   "greens"
+                 "apples"    "fruit"
+                 "butter"    "dairy"
+                 "cheese"    "dairy"
+                 "bacon"     "meat"
+                 "juice"     "drinks"
+                 "water"     "drinks"
+                 "twixies"   "candy"
+                 "tomatoes"  "greens"
+                 "bananas"   "fruit"})
 
 (defn- sale [sale-record]
   {:item (first sale-record) :qty (last sale-record)})
@@ -47,3 +47,9 @@
     add-quantity-to-category
     {}
     (map (comp add-category sale) record-of-sales)))
+
+(defn sales-report [record-of-sales]
+  (assoc
+    (categories-total record-of-sales)
+    "total"
+    (grand-total record-of-sales)))
