@@ -15,49 +15,6 @@
                             ["apples (red, 1Kg bag)" 1 2]
                             ["butter (500 g)" 3 6]])))))
 
-(def categories
-  {
-   "bread" "wheat and pasta"
-   "eggs" "animalic"
-   "milk" "dairy"
-   "coca cola" "sodas"
-   "chicken" "meat"
-   "beef" "meat"
-   "carrots" "greens"
-   "apples" "fruit"
-   "butter" "dairy"
-   "cheese" "dairy"
-   "bacon" "meat"
-   "juice" "drinks"
-   "water" "drinks"
-   "twixies" "candy"
-   "tomatoes" "greens"
-   "bananas" "fruit"})
-
-(defn- item->category [item]
-  (get categories (some #(re-find (re-pattern (key %)) item) categories)))
-
-(defn- item [record]
-  (first record))
-
-(defn- quantity [record]
-  (last record))
-
-(defn- category [record]
-  (first record))
-
-(defn- category-and-quantity [record]
-  (vector (item->category (item record)) (quantity record)))
-
-(defn- add-quantity-to-category [categories-map category-and-quantity]
-  (update categories-map (category category-and-quantity) (fnil + 0) (quantity category-and-quantity)))
-
-(defn categories-total [record-of-sales]
-  (reduce
-    add-quantity-to-category
-    {}
-    (map category-and-quantity record-of-sales)))
-
 (deftest categories-total-test
   (testing "Category total is properly calculated"
     (is (= {"wheat and pasta" 2} (categories-total [["bread" 1 2]])))
