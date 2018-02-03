@@ -19,12 +19,15 @@
   (testing "Category total is properly calculated"
     (is (= {"wheat and pasta" 2} (categories-total [["bread" 1 2]])))
     (is (= {"wheat and pasta" 4} (categories-total [["bread" 1 2] ["bread" 1 2]])))
-    (is (= {"wheat and pasta" 2 "animalic" 3} (categories-total [["bread" 1 2] ["12-pack of eggs" 1 3]])))
-    (is (= {"wheat and pasta" 2 "animalic" 2 "dairy" 14 "sodas" 10 "meat" 4 "greens" 1 "fruit" 2} (categories-total [["bread" 1 2]
-                                                                 ["12-pack of eggs" 1 2]
-                                                                 ["milk (1L)" 4 8]
-                                                                 ["coca cola (33cl)" 10 10]
-                                                                 ["chicken clubs (frozen)" 1 4]
-                                                                 ["carrots" 4 1]
-                                                                 ["apples (red, 1Kg bag)" 1 2]
-                                                                 ["butter (500 g)" 3 6]])))))
+    (is (= {"wheat and pasta" 2 "animalic" 3}
+           (categories-total [["bread" 1 2]
+                              ["12-pack of eggs" 1 3]])))
+    (is (= {"wheat and pasta" 2 "animalic" 2 "dairy" 14 "sodas" 10 "meat" 4 "greens" 1 "fruit" 2}
+           (categories-total [["bread" 1 2]
+                              ["12-pack of eggs" 1 2]
+                              ["milk (1L)" 4 8]
+                              ["coca cola (33cl)" 10 10]
+                              ["chicken clubs (frozen)" 1 4]
+                              ["carrots" 4 1]
+                              ["apples (red, 1Kg bag)" 1 2]
+                              ["butter (500 g)" 3 6]])))))
